@@ -1,0 +1,206 @@
+{
+  "info": {
+    "name": "Unique Beauty Membership API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "Early Bird Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/early-bird-status",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "early-bird-status"]
+        }
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Jordan Smith\",\n  \"email\": \"jordan@example.com\",\n  \"phone\": \"0212345678\",\n  \"address\": \"123 Rose Street, Remuera\",\n  \"existingCustomer\": false,\n  \"preferredBranch\": \"Auckland City\",\n  \"notes\": \"Morning appointment preferred\",\n  \"termsAccepted\": true,\n  \"marketingConsent\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "register"]
+        }
+      }
+    },
+    {
+      "name": "Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@uniquebeauty.nz\",\n  \"password\": \"change_me_to_a_strong_password\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "login"]
+        }
+      }
+    },
+    {
+      "name": "Get Registrations",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/registrations?page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "registrations"]
+        }
+      }
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/stats",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "stats"]
+        }
+      }
+    },
+    {
+      "name": "Export CSV",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/export/csv",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "export", "csv"]
+        }
+      }
+    },
+    {
+      "name": "Export XLSX",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/export/xlsx",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "export", "xlsx"]
+        }
+      }
+    },
+    {
+      "name": "Update Registration",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"registrationStatus\": \"Contacted\",\n  \"adminNotes\": \"Called customer — appointment booked for Friday.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/registration/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "registration", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_REGISTRATION_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Registration",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/registration/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "registration", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_REGISTRATION_ID"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
